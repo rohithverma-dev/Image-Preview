@@ -5,6 +5,7 @@ function App() {
   const [imageUrls, setImageUrls] = useState([]);
 
   const handleImagePreview = () => {
+    setImageUrls([])
     if (myFiles) {
       Array.from(myFiles).map( (myFile)=>{
         const reader = new FileReader();
@@ -16,19 +17,24 @@ function App() {
     }
   };
 
-
   return (
     <>
       <h1>Image PreView</h1>
-      {imageUrls.map((imageUrl , index )=>(
-        <img key={index} src={imageUrl} alt="" />
-      ))}
-      <input
-        type="file"
-        multiple="multiple"
-        onChange={(e) => setMyFiles(e.target.files)}
-      />
+      <br />
+      <div className="">
+        <input
+          type="file"
+          multiple="multiple"
+          onChange={(e) => setMyFiles(e.target.files)}
+          />
       <button onClick={handleImagePreview}>Save</button>
+      </div>
+
+      <div className="conatiner">
+        {imageUrls.map((imageUrl , index )=>(
+          <img key={index} src={imageUrl} alt="" />
+        ))}
+      </div>
     </>
   );
 }
